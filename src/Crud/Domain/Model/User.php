@@ -20,7 +20,7 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     /**
      * @var UuidInterface|null
      */
-    private $roleId;
+//    private $roleId;
 
     /**
      * @var string
@@ -92,27 +92,6 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     {
         return $this->id;
     }
-
-//    /**
-//     * @param null|UuidInterface $roleId
-//     * @return UserInterface
-//     */
-//    public function setRoleId(?UuidInterface $roleId): UserInterface
-//    {
-//        $this->roleId = $roleId;
-//
-//        return $this;
-//    }
-
-//    /**
-//     * Get role id
-//     *
-//     * @return UuidInterface
-//     */
-//    public function getRoleId():? UuidInterface
-//    {
-//        return $this->roleId;
-//    }
 
     /**
      * @param RoleInterface $role

@@ -38,4 +38,8 @@ Crud\Domain\Model\Role:
             nullable: true
             options:
                 comment: 'Modify date'
+    oneToMany:
+        users:
+            targetEntity: Crud\Domain\Model\User
+            mappedBy: role
     lifecycleCallbacks: {  }

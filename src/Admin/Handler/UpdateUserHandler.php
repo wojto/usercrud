@@ -72,8 +72,7 @@ class UpdateUserHandler
                 $user->setPassword($command->password);
             }
         }
-dump(['$user', $user]);
-        exit;
+
         // save object to database
         $this->userRespository->save($user);
 

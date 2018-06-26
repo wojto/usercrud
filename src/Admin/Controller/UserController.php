@@ -47,7 +47,11 @@ class UserController extends AbstractController
 
     /**
      * @param Request $request
+     * @param UserRepository $userRepository
+     * @param TranslatorInterface $translator
+     * @param CommandBus $commandBus
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\NonUniqueResultException
      * @Route("/user/add", name="admin_user_add")
      * @Route("/user/{userId}/update", name="admin_user_update")
      */
@@ -64,7 +68,7 @@ class UserController extends AbstractController
         // set command parameters to those from database
         if ($userId) {
             /** @var User $user */
-            $user = $userRepository->findOneById(Uuid::fromString($userId));
+            $user = $userRepository->getById(Uuid::fromString($userId));
 
             if ($user instanceof User) {
                 try {

@@ -15,14 +15,19 @@ use Ramsey\Uuid\UuidInterface;
 class UserRepository extends EntityRepository implements UserRepositoryInterface
 {
     /**
-     * Return user from database
-     *
-     * @param  UuidInterface $id
-     * @return null|object
+     * @param UuidInterface $id
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getById(UuidInterface $id)
     {
-        return $this->find($id);
+        return $this->createQueryBuilder('u')
+            ->innerJoin('u.role', 'r')
+            ->addSelect('r')
+            ->andWhere('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     /**

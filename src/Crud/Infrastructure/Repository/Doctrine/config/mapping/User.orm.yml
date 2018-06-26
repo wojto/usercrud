@@ -20,14 +20,6 @@ Crud\Domain\Model\User:
             generator:
                 strategy: none
     fields:
-#        roleId:
-#            type: string
-#            nullable: false
-#            length: 40
-#            options:
-#                fixed: false
-#                comment: 'Role identifier'
-#            column: role_id
         email:
             type: string
             nullable: false
@@ -70,13 +62,8 @@ Crud\Domain\Model\User:
                 comment: 'Modify date'
     manyToOne:
         role:
-            targetEntity: Role
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                role_id:
-                    referencedColumnName: id
-            orphanRemoval: false
+            targetEntity: Crud\Domain\Model\Role
+            inversedBy: users
+            joinColumn:
+                nullable: false
     lifecycleCallbacks: {  }

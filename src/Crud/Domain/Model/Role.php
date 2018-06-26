@@ -35,6 +35,11 @@ class Role implements RoleInterface
     private $modified;
 
     /**
+     * @var array
+     */
+    private $users;
+
+    /**
      * User constructor.
      * @param UuidInterface $id
      * @param string $name
