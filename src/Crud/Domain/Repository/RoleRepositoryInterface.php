@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Crud\Domain\Repository;
 
-use Crud\Domain\Model\UserInterface;
+use Crud\Domain\Model\RoleInterface;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Interface UserRepositoryInterface
+ * Interface RoleRepositoryInterface
  *
  * @package Crud\Domain\Repository
  */
-interface UserRepositoryInterface
+interface RoleRepositoryInterface
 {
     /**
-     * Return single user
+     * Return single role
      *
      * @param  UuidInterface $id
      * @return mixed
@@ -22,17 +22,17 @@ interface UserRepositoryInterface
     public function getById(UuidInterface $id);
 
     /**
-     * Save user
+     * Save role
      *
-     * @param  UserInterface $user
+     * @param  RoleInterface $role
      * @return mixed
      */
-    public function save(UserInterface $user);
+    public function save(RoleInterface $role);
 
     /**
-     * Return list of users
+     * Return list of roles
      *
      * @return mixed
      */
-    public function getUsers();
+    public function getRoles();
 }

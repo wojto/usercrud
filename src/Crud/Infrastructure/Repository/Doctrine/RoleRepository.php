@@ -3,19 +3,19 @@
 namespace Crud\Infrastructure\Repository\Doctrine;
 
 use Doctrine\ORM\EntityRepository;
-use Crud\Domain\Model\UserInterface;
-use Crud\Domain\Repository\UserRepositoryInterface;
+use Crud\Domain\Model\RoleInterface;
+use Crud\Domain\Repository\RoleRepositoryInterface;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Doctrine implementation of user repository
+ * Doctrine implementation of role repository
  *
  * @package Crud\Infrastructure\Repository\Doctrine
  */
-class UserRepository extends EntityRepository implements UserRepositoryInterface
+class RoleRepository extends EntityRepository implements RoleRepositoryInterface
 {
     /**
-     * Return user from database
+     * Return role from database
      *
      * @param  UuidInterface $id
      * @return null|object
@@ -26,14 +26,14 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
     }
 
     /**
-     * Save user in database
+     * Save role in database
      *
-     * @param UserInterface $user
+     * @param RoleInterface $role
      */
-    public function save(UserInterface $user)
+    public function save(RoleInterface $role)
     {
-        $this->_em->persist($user);
-        $this->_em->flush($user);
+        $this->_em->persist($role);
+        $this->_em->flush($role);
     }
 
     /**
@@ -43,7 +43,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
      * @param  $orderBy array Sort params
      * @return \Doctrine\ORM\Query
      */
-    public function getUsers($params = [], $orderBy = [])
+    public function getRoles($params = [], $orderBy = [])
     {
         // prepare sort params
         if (empty($orderBy)) {

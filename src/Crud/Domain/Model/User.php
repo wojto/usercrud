@@ -34,7 +34,7 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     /**
      * @var string
      */
-    private $twitterHandler;
+    private $twitterHandle;
 
     /**
      * @var string
@@ -52,12 +52,17 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     private $modified;
 
     /**
+     * @var Role
+     */
+    private $role;
+
+    /**
      * User constructor.
      * @param UuidInterface $id
      * @param UuidInterface $roleId
      * @param string $name
      * @param Email $email
-     * @param string $twitterhandler
+     * @param string $twitterHandle
      * @param string $password
      */
     public function __construct(
@@ -65,7 +70,7 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
         UuidInterface $roleId,
         string $name,
         Email $email,
-        string $twitterhandler,
+        string $twitterHandle,
         string $password
     )
     {
@@ -73,7 +78,7 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
         $this->roleId = $roleId;
         $this->name = $name;
         $this->email = $email;
-        $this->twitterHandler = $twitterhandler;
+        $this->twitterHandle = $twitterHandle;
         $this->password = $password;
     }
 
@@ -118,13 +123,13 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     }
 
     /**
-     * Get Twitter handler
+     * Get Twitter handle
      *
      * @return string
      */
     public function getTwitterHandle(): string
     {
-        return $this->twitterHandler;
+        return $this->twitterHandle;
     }
 
     /**

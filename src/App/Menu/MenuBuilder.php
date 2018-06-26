@@ -54,23 +54,13 @@ class MenuBuilder
         if ($this->authorizationChecker->isGranted('ROLE_USER')) {
             $menu
                 ->addChild(
-                    'Produkty',
+                    'Role',
                     array(
-                        'route' => 'admin_product_list',
-                        'extras' => array(
-                            'routes' => array(
-                                'admin_product_add'
-                            )
-                        )
+                        'route' => 'admin_role_list'
                     )
                 )
-                ->setAttribute('icon', 'fa fa-building fa-fw');
-            $menu['Produkty']->addChild(
-                'dodaj nowy produkt',
-                array(
-                    'route' => 'admin_product_add'
-                )
-            );
+                ->setAttribute('icon', 'fa fa-group fa-fw');
+
             $menu
                 ->addChild(
                     'Użytkownicy',

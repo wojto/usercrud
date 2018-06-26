@@ -5,15 +5,15 @@ namespace Admin\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Crud\Infrastructure\Repository\Doctrine\UserRepository;
+use Crud\Infrastructure\Repository\Doctrine\RoleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 
-class UserController extends AbstractController
+class RoleController extends AbstractController
 {
     /**
-     * @Route("/users", name="admin_user_list")
+     * @Route("/roles", name="admin_role_list")
      */
-    public function userListAction(Request $request, UserRepository $userRepository, PaginatorInterface $paginator)
+    public function roleListAction(Request $request, RoleRepository $roleRepository, PaginatorInterface $paginator)
     {
         // set sort params
         $orderBy = array(
@@ -21,20 +21,20 @@ class UserController extends AbstractController
             'asc' => $request->query->get('direction', 'desc')
         );
 
-        // get users
-        $users = $userRepository->getUsers(array(), $orderBy);
+        // get roles
+        $roles = $roleRepository->getRoles(array(), $orderBy);
         // configure paginator
         $pagination = $paginator->paginate(
-            $users,
+            $roles,
             $request->query->getInt('page', 1),
             20
         );
 
         // render template
         return $this->render(
-            'Admin/user/user_list.html.twig',
+            'Admin/role/role_list.html.twig',
             array(
-                'users' => $pagination
+                'roles' => $pagination
             )
         );
     }

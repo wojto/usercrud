@@ -1,0 +1,41 @@
+Crud\Domain\Model\Role:
+    type: entity
+    table: roles
+    repositoryClass: Crud\Infrastructure\Repository\Doctrine\RoleRepository
+    id:
+        id:
+            type: uuid
+            nullable: false
+            options:
+                fixed: false
+                comment: 'Role identifier'
+            id: true
+            generator:
+                strategy: none
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'Role name'
+        passwordPolicy:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'Password policy'
+            column: password_policy
+        created:
+            type: datetime
+            nullable: false
+            options:
+                comment: 'Add date'
+        modified:
+            type: datetime
+            nullable: true
+            options:
+                comment: 'Modify date'
+    lifecycleCallbacks: {  }

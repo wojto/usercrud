@@ -2,6 +2,10 @@ Crud\Domain\Model\User:
     type: entity
     table: users
     repositoryClass: Crud\Infrastructure\Repository\Doctrine\UserRepository
+    indexes:
+        role_id:
+            columns:
+                - role_id
     uniqueConstraints:
         email:
             columns:
@@ -16,14 +20,14 @@ Crud\Domain\Model\User:
             generator:
                 strategy: none
     fields:
-        roleId:
-            type: string
-            nullable: false
-            length: 40
-            options:
-                fixed: false
-                comment: 'Role identifier'
-            column: role_id
+#        roleId:
+#            type: string
+#            nullable: false
+#            length: 40
+#            options:
+#                fixed: false
+#                comment: 'Role identifier'
+#            column: role_id
         email:
             type: string
             nullable: false
@@ -40,20 +44,20 @@ Crud\Domain\Model\User:
                 comment: 'User name'
         twitterHandle:
             type: string
-            nullable: false
+            nullable: true
             length: 16
             options:
                 fixed: false
-                comment: 'Twitter handler'
+                comment: 'Twitter username'
                 default: 'NULL'
+            column: twitter_handle
         password:
             type: string
-            nullable: true
+            nullable: false
             length: 40
             options:
                 fixed: false
                 comment: 'Hashed password'
-                default: 'NULL'
         created:
             type: datetime
             nullable: false
@@ -61,7 +65,18 @@ Crud\Domain\Model\User:
                 comment: 'Add date'
         modified:
             type: datetime
-            nullable: false
+            nullable: true
             options:
                 comment: 'Modify date'
+    manyToOne:
+        role:
+            targetEntity: Role
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                role_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }
