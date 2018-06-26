@@ -1,0 +1,44 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'pl'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+
+    Admin\Controller\:
+        resource: '../src/Admin/Controller'
+        tags: ['controller.service_arguments']
+
+    Admin\Controller\SecurityController:
+        public: true
+        bind:
+            $authenticationUtils: '@security.authentication_utils'
+
+    Admin\Controller\UserController:
+        public: true
+        bind:
+            $userRepository: '@Crud\Infrastructure\Repository\Doctrine\UserRepository'
+
+    App\Menu\MenuBuilder:
+        arguments: ['@knp_menu.factory', '@security.authorization_checker', '@request_stack']
+        tags:
+            - { name: knp_menu.menu_builder, method: createAdminMenu, alias: admin }
+
+    Crud\:
+        resource: '../src/Crud/*'
+        exclude: '../src/Crud/*/{Domain,Infrastructure}'
+
+    Crud\Infrastructure\Repository\Doctrine\UserRepository:
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - Crud\Domain\Model\User

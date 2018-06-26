@@ -1,0 +1,67 @@
+Crud\Domain\Model\User:
+    type: entity
+    table: users
+    repositoryClass: Crud\Infrastructure\Repository\Doctrine\UserRepository
+    uniqueConstraints:
+        email:
+            columns:
+                - email
+    id:
+        id:
+            type: uuid
+            nullable: false
+            options:
+                comment: 'User identifier'
+            id: true
+            generator:
+                strategy: none
+    fields:
+        roleId:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+                comment: 'Role identifier'
+            column: role_id
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'E-mail address'
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'User name'
+        twitterHandle:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'Twitter handler'
+                default: 'NULL'
+        password:
+            type: string
+            nullable: true
+            length: 40
+            options:
+                fixed: false
+                comment: 'Hashed password'
+                default: 'NULL'
+        created:
+            type: datetime
+            nullable: false
+            options:
+                comment: 'Add date'
+        modified:
+            type: datetime
+            nullable: false
+            options:
+                comment: 'Modify date'
+    lifecycleCallbacks: {  }
