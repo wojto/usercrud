@@ -41,7 +41,7 @@ Crud\Domain\Model\User:
         twitterHandle:
             type: string
             nullable: false
-            length: 255
+            length: 16
             options:
                 fixed: false
                 comment: 'Twitter handler'
