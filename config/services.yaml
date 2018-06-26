@@ -29,6 +29,11 @@ services:
         bind:
             $userRepository: '@Crud\Infrastructure\Repository\Doctrine\UserRepository'
 
+    Admin\Controller\RoleController:
+        public: true
+        bind:
+            $roleRepository: '@Crud\Infrastructure\Repository\Doctrine\RoleRepository'
+
     App\Menu\MenuBuilder:
         arguments: ['@knp_menu.factory', '@security.authorization_checker', '@request_stack']
         tags:
@@ -42,3 +47,8 @@ services:
         factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
             - Crud\Domain\Model\User
+
+    Crud\Infrastructure\Repository\Doctrine\RoleRepository:
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - Crud\Domain\Model\Role

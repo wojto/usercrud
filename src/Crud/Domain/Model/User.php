@@ -119,7 +119,7 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
      */
     public function getEmail(): Email
     {
-        return $this->email;
+        return new Email($this->email);
     }
 
     /**

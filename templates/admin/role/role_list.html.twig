@@ -1,0 +1,53 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <h3 class="col-md-12">
+                {{ 'Lista ról'|trans }}
+            </h3>
+        </div>
+
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="col-md-5">
+                    {{ 'Identyfikator'|trans }}
+                </th>
+                <th class="col-md-5">
+                    {{ 'Nazwa'|trans }}
+                </th>
+                <th class="col-md-2 text-center">
+                    {{ 'Data dodania'|trans }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for role in roles %}
+                <tr>
+                    <td class="col-md-5">
+                        {{ role.id }}
+                    </td>
+                    <td class="col-md-5">
+                        {{ role.name }}
+                    </td>
+                    <td class="col-md-2 text-center">
+                        {{ role.created|date('Y-m-d') }}
+                    </td>
+                </tr>
+            {% else %}
+                <td colspan="3" class="col-md-12">{{ 'Brak ról.'|trans }}</td>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="3" class="col-md-12">{{ 'Liczba ról' }}: {{ roles.getTotalItemCount }}</th>
+            </tr>
+            </tfoot>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(roles) }}
+        </div>
+    </div>
+{% endblock %}
