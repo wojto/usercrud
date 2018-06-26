@@ -3,6 +3,7 @@
 namespace Crud\Domain\Model;
 
 use Crud\Domain\Model\ValueObject\Email;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\UserInterface as UserSecurityInterface;
 
@@ -58,28 +59,28 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
 
     /**
      * User constructor.
-     * @param UuidInterface $id
-     * @param UuidInterface $roleId
+     * @param Role|null $role
      * @param string $name
      * @param Email $email
      * @param string $twitterHandle
      * @param string $password
      */
     public function __construct(
-        UuidInterface $id,
-        UuidInterface $roleId,
+        Role $role,
         string $name,
         Email $email,
-        string $twitterHandle,
-        string $password
+        $twitterHandle,
+        $password
     )
     {
-        $this->id = $id;
-        $this->roleId = $roleId;
+        $this->id = Uuid::uuid4();
+        $this->role = $role;
         $this->name = $name;
         $this->email = $email;
         $this->twitterHandle = $twitterHandle;
         $this->password = $password;
+
+        $this->created = new \DateTime();
     }
 
     /**
@@ -92,14 +93,57 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
         return $this->id;
     }
 
+//    /**
+//     * @param null|UuidInterface $roleId
+//     * @return UserInterface
+//     */
+//    public function setRoleId(?UuidInterface $roleId): UserInterface
+//    {
+//        $this->roleId = $roleId;
+//
+//        return $this;
+//    }
+
+//    /**
+//     * Get role id
+//     *
+//     * @return UuidInterface
+//     */
+//    public function getRoleId():? UuidInterface
+//    {
+//        return $this->roleId;
+//    }
+
     /**
-     * Get role id
-     *
-     * @return UuidInterface
+     * @param RoleInterface $role
+     * @return UserInterface
      */
-    public function getRoleId(): UuidInterface
+    public function setRole(RoleInterface $role): UserInterface
     {
-        return $this->roleId;
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return RoleInterface
+     */
+    public function getRole(): RoleInterface
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $name
+     * @return UserInterface
+     */
+    public function setName(string $name): UserInterface
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -113,6 +157,17 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     }
 
     /**
+     * @param Email $email
+     * @return UserInterface
+     */
+    public function setEmail(Email $email): UserInterface
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
      * Get email
      *
      * @return Email
@@ -123,13 +178,35 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     }
 
     /**
+     * @param string $twitterHandle
+     * @return UserInterface
+     */
+    public function setTwitterHandle(string $twitterHandle): UserInterface
+    {
+        $this->twitterHandle = $twitterHandle;
+
+        return $this;
+    }
+
+    /**
      * Get Twitter handle
      *
      * @return string
      */
-    public function getTwitterHandle(): string
+    public function getTwitterHandle():? string
     {
         return $this->twitterHandle;
+    }
+
+    /**
+     * @param string $password
+     * @return UserInterface
+     */
+    public function setPassword(string $password): UserInterface
+    {
+        $this->password = $password;
+
+        return $this;
     }
 
     /**
@@ -150,6 +227,17 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     public function getCreated(): \DateTime
     {
         return $this->created;
+    }
+
+    /**
+     * @param \DateTime $modified
+     * @return UserInterface
+     */
+    public function setModified(\DateTime $modified): UserInterface
+    {
+        $this->modified = $modified;
+
+        return $this;
     }
 
     /**

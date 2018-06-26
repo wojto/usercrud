@@ -10,18 +10,13 @@
     <div id="main-container">
         <section id="main-header" class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-sm-12 text-right">
                     {% if app.user %}
                         {{ app.user.username }}
                         <a href="{{ path('admin_logout') }}">
-                            <div class="fa fa-sign-out"></div> {{ 'wyloguj'|trans }}
+                            <div class="fa fa-sign-out"></div> {{ 'logout_button_label'|trans }}
                         </a>
                     {% endif %}
-                </div>
-                <div class="col-md-8 text-right">
-                    <a href="{{ path('admin_homepage') }}">
-                        {{ 'Przejdź do panelu administracyjnego'|trans }}
-                    </a>
                 </div>
             </div>
         </section>

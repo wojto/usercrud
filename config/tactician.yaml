@@ -1,0 +1,8 @@
+services:
+    handler.update_user:
+        class: Admin\Handler\UpdateUserHandler
+        arguments:
+            - '@Crud\Infrastructure\Repository\Doctrine\UserRepository'
+            - '@Crud\Infrastructure\Repository\Doctrine\RoleRepository'
+        tags:
+            - { name: tactician.handler, command: 'Admin\Command\UpdateUserCommand' }

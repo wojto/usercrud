@@ -1,3 +1,6 @@
+imports:
+    - { resource: tactician.yaml }
+
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
@@ -34,6 +37,14 @@ services:
         bind:
             $roleRepository: '@Crud\Infrastructure\Repository\Doctrine\RoleRepository'
 
+    Admin\Form\UserType:
+        public: true
+        arguments:
+            - '@translator'
+            - '@Crud\Infrastructure\Repository\Doctrine\RoleRepository'
+        tags:
+            - { name: form.type }
+
     App\Menu\MenuBuilder:
         arguments: ['@knp_menu.factory', '@security.authorization_checker', '@request_stack']
         tags:
@@ -52,3 +63,4 @@ services:
         factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
             - Crud\Domain\Model\Role
+

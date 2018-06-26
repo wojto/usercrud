@@ -2,11 +2,17 @@
 
 namespace Admin\Controller;
 
+use Admin\Command\UpdateUserCommand;
+use Admin\Form\UserType;
+use Crud\Domain\Model\User;
+use League\Tactician\CommandBus;
+use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Crud\Infrastructure\Repository\Doctrine\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class UserController extends AbstractController
 {
@@ -36,6 +42,69 @@ class UserController extends AbstractController
             array(
                 'users' => $pagination
             )
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route("/user/add", name="admin_user_add")
+     * @Route("/user/{userId}/update", name="admin_user_update")
+     */
+    public function updateAction(
+        Request $request,
+        UserRepository $userRepository,
+        TranslatorInterface $translator,
+        CommandBus $commandBus
+    )
+    {
+        $updateUserCommand = new UpdateUserCommand();
+        $userId = $request->get('userId');
+
+        // set command parameters to those from database
+        if ($userId) {
+            /** @var User $user */
+            $user = $userRepository->findOneById(Uuid::fromString($userId));
+
+            if ($user instanceof User) {
+                try {
+                    $updateUserCommand->readFromActualParams($user);
+                } catch (\Exception $e) {
+                    $this->addFlash('error', $e->getMessage());
+
+                    return $this->redirectToRoute('admin_user_list');
+                }
+            } else {
+                $this->addFlash('error', $translator->trans('user_not_exists_error'));
+
+                return $this->redirectToRoute('admin_user_list');
+            }
+        }
+
+        // create form
+        $form = $this->createForm(UserType::class, $updateUserCommand);
+        if ($request->isMethod('POST')) {
+            try {
+                $form->handleRequest($request);
+
+                // update bundle data
+                $commandBus->handle($updateUserCommand);
+
+                // check if we have user create or update
+                $this->addFlash('notice', $translator->trans('user_update_success'));
+            } catch (\Exception $e) {
+                $this->addFlash('error', $translator->trans('user_update_error').' '.$e->getMessage());
+            }
+
+            return $this->redirectToRoute('admin_user_list');
+        }
+
+        return $this->render(
+            'admin/user/user_update.html.twig',
+            [
+                'form' => $form->createView(),
+                'userId' => $userId
+            ]
         );
     }
 }

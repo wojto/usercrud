@@ -54,14 +54,14 @@ class RoleRepository extends EntityRepository implements RoleRepositoryInterface
         }
         switch ($orderBy['field']) {
             case 'created':
-                $orderByField = 'u.created';
+                $orderByField = 'r.created';
                 break;
             case 'id':
             default:
-                $orderByField = 'u.id';
+                $orderByField = 'r.id';
                 break;
         }
-        $query = $this->createQueryBuilder('u')
+        $query = $this->createQueryBuilder('r')
             ->orderBy($orderByField, $orderBy['asc']);
 
         return $query

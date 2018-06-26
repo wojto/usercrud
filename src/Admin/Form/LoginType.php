@@ -7,8 +7,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Validator\Constraints\Email;
-use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * Login form
@@ -18,7 +16,7 @@ use Symfony\Component\Validator\Constraints\Length;
 class LoginType extends AbstractType
 {
     /**
-     * Building form
+     * Login form
      *
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -29,18 +27,18 @@ class LoginType extends AbstractType
             ->add(
                 'username',
                 EmailType::class,
-                array(
-                    'label' => 'E-mail użytkownika',
-                    'constraints' => [new Email()],
-                )
+                [
+                    'required' => true,
+                    'label' => 'login_form_email_label'
+                ]
             )
             ->add(
                 'password',
                 PasswordType::class,
-                array(
-                    'label' => 'Hasło',
-                    'constraints' => [new Length(['min' => 4])],
-                )
+                [
+                    'required' => true,
+                    'label' => 'login_form_password_label'
+                ]
             );
     }
 
@@ -52,9 +50,9 @@ class LoginType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'intention' => 'authentication'
-            )
+            ]
         );
     }
 }
