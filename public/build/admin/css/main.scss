@@ -92,6 +92,14 @@ a:hover {
     margin-bottom: 20px;
     border-bottom: 1px solid $color-menu;
   }
+
+  table .actions a {
+    margin: 0 5px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 /* footer */

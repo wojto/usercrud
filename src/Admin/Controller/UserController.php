@@ -111,4 +111,30 @@ class UserController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @Route("/user/{userId}/delete", name="admin_user_delete")
+     */
+    public function deleteAction(
+        Request $request,
+        UserRepository $userRepository,
+        TranslatorInterface $translator,
+        CommandBus $commandBus
+    )
+    {
+
+    }
+
+    /**
+     * @Route("/user/{userId}/view", name="admin_user_view")
+     */
+    public function viewAction(
+        Request $request,
+        UserRepository $userRepository,
+        TranslatorInterface $translator,
+        CommandBus $commandBus
+    )
+    {
+
+    }
 }

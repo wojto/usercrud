@@ -57,6 +57,10 @@ a:hover {
     padding-bottom: 7px;
     margin-bottom: 20px;
     border-bottom: 1px solid #e7e7e7; }
+  #main-content table .actions a {
+    margin: 0 5px; }
+    #main-content table .actions a:hover {
+      text-decoration: none; }
 
 /* footer */
 #main-footer {
