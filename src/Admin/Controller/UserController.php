@@ -33,7 +33,7 @@ class UserController extends AbstractController
         $pagination = $paginator->paginate(
             $users,
             $request->query->getInt('page', 1),
-            20
+            UserRepository::NUMBER_OF_RESULTS_PER_PAGE
         );
 
         // render template

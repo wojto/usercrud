@@ -27,7 +27,7 @@ class RoleController extends AbstractController
         $pagination = $paginator->paginate(
             $roles,
             $request->query->getInt('page', 1),
-            20
+            RoleRepository::NUMBER_OF_RESULTS_PER_PAGE
         );
 
         // render template

@@ -15,6 +15,11 @@ use Ramsey\Uuid\UuidInterface;
 class RoleRepository extends EntityRepository implements RoleRepositoryInterface
 {
     /**
+     * Number of results on listing page
+     */
+    const NUMBER_OF_RESULTS_PER_PAGE = 1;
+
+    /**
      * Return role from database
      *
      * @param  UuidInterface $id

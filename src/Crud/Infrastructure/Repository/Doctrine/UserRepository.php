@@ -15,6 +15,11 @@ use Ramsey\Uuid\UuidInterface;
 class UserRepository extends EntityRepository implements UserRepositoryInterface
 {
     /**
+     * Number of results on listing page
+     */
+    const NUMBER_OF_RESULTS_PER_PAGE = 1;
+
+    /**
      * @param UuidInterface $id
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException

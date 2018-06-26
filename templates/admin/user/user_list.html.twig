@@ -13,10 +13,10 @@
                 <thead>
                 <tr>
                     <th class="col-md-5">
-                        {{ 'id'|trans }}
+                        {{ 'name'|trans }}
                     </th>
                     <th class="col-md-5">
-                        {{ 'email_address'|trans }}
+                        {{ 'role'|trans }}
                     </th>
                     <th class="col-md-2 text-center">
                         {{ 'add_date'|trans }}
@@ -27,13 +27,13 @@
                 {% for user in users %}
                     <tr>
                         <td class="col-md-5">
-                            <a href="{{ path('admin_user_update', {'userId': user.id}) }}">{{ user.id }}</a>
+                            <a href="{{ path('admin_user_update', {'userId': user.id}) }}">{{ user.name }}</a>
                         </td>
                         <td class="col-md-5">
-                            {{ user.email }}
+                            {{ user.role.name }}
                         </td>
                         <td class="col-md-2 text-center">
-                            {{ user.created|date('Y-m-d') }}
+                            {{ user.created|date('Y-m-d H:i') }}
                         </td>
                     </tr>
                 {% else %}
