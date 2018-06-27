@@ -28,6 +28,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/tactician-container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/tactician-logger" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ornicar/gravatar-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />

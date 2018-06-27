@@ -61,6 +61,9 @@ a:hover {
     margin: 0 5px; }
     #main-content table .actions a:hover {
       text-decoration: none; }
+  #main-content dt,
+  #main-content dd {
+    line-height: 30px; }
 
 /* footer */
 #main-footer {
