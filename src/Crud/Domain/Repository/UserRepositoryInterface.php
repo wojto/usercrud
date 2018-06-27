@@ -35,4 +35,9 @@ interface UserRepositoryInterface
      * @return mixed
      */
     public function getUsers();
+
+    /**
+     * @param UserInterface $user
+     */
+    public function remove(UserInterface $user);
 }

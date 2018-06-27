@@ -77,4 +77,13 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
         return $query
             ->getQuery();
     }
+
+    /**
+     * @param UserInterface $user
+     */
+    public function remove(UserInterface $user)
+    {
+        $this->_em->remove($user);
+        $this->_em->flush($user);
+    }
 }

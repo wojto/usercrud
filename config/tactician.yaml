@@ -6,3 +6,11 @@ services:
             - '@Crud\Infrastructure\Repository\Doctrine\RoleRepository'
         tags:
             - { name: tactician.handler, command: 'Admin\Command\UpdateUserCommand' }
+
+    handler.delete_user:
+        class: Admin\Handler\DeleteUserHandler
+        arguments:
+            - '@Crud\Infrastructure\Repository\Doctrine\UserRepository'
+            - '@Crud\Infrastructure\Repository\Doctrine\RoleRepository'
+        tags:
+            - { name: tactician.handler, command: 'Admin\Command\DeleteUserCommand' }

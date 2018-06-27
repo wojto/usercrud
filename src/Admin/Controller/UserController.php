@@ -2,8 +2,10 @@
 
 namespace Admin\Controller;
 
+use Admin\Command\DeleteUserCommand;
 use Admin\Command\UpdateUserCommand;
 use Admin\Form\UserType;
+use Crud\Domain\Exception\InvalidUserException;
 use Crud\Domain\Model\User;
 use League\Tactician\CommandBus;
 use Ramsey\Uuid\Uuid;
@@ -79,7 +81,8 @@ class UserController extends AbstractController
                     return $this->redirectToRoute('admin_user_list');
                 }
             } else {
-                $this->addFlash('error', $translator->trans('user_not_exists_error'));
+                throw InvalidUserException::forId($userId);
+//                $this->addFlash('error', $translator->trans('user_not_exists_error'));
 
                 return $this->redirectToRoute('admin_user_list');
             }
@@ -122,7 +125,30 @@ class UserController extends AbstractController
         CommandBus $commandBus
     )
     {
+        $userId = $request->get('userId');
+        if (!$userId) {
+            $this->addFlash('error', $translator->trans('user_not_exists_error'));
+        }
 
+        /** @var User $user */
+        $user = $userRepository->getById(Uuid::fromString($userId));
+
+        if (!($user instanceof User)) {
+            throw InvalidUserException::forId($userId);
+        }
+
+        try {
+            $deleteUserCommand = new DeleteUserCommand($user);
+            $commandBus->handle($deleteUserCommand);
+        } catch (\Exception $e) {
+            $this->addFlash('error', $e->getMessage());
+
+            return $this->redirectToRoute('admin_user_list');
+        }
+
+        $this->addFlash('success', $translator->trans('user_delete_success'));
+
+        return $this->redirectToRoute('admin_user_list');
     }
 
     /**
@@ -131,10 +157,26 @@ class UserController extends AbstractController
     public function viewAction(
         Request $request,
         UserRepository $userRepository,
-        TranslatorInterface $translator,
-        CommandBus $commandBus
+        TranslatorInterface $translator
     )
     {
+        $userId = $request->get('userId');
+        if (!$userId) {
+            $this->addFlash('error', $translator->trans('user_not_exists_error'));
+        }
 
+        /** @var User $user */
+        $user = $userRepository->getById(Uuid::fromString($userId));
+
+        if (!($user instanceof User)) {
+            throw InvalidUserException::forId($userId);
+        }
+
+        return $this->render(
+            'admin/user/user_view.html.twig',
+            [
+                'user' => $user
+            ]
+        );
     }
 }

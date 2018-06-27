@@ -22,7 +22,7 @@ class UpdateUserHandler
     private $roleRespository;
 
     /**
-     * UpdateSettingsHandler constructor.
+     * UpdateUserHandler constructor.
      * @param UserRepositoryInterface $userRespository
      * @param RoleRepositoryInterface $roleRespository
      */

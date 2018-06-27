@@ -87,7 +87,7 @@ class UserType extends AbstractType
             )
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'required' => false,
+                'required' => is_null($builder->getData()->id),
                 'invalid_message' => 'error_user_password_invalid_message',
                 'first_options' => array(
                     'label' => 'user_form_password_label'
