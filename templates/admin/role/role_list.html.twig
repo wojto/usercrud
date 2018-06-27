@@ -13,13 +13,13 @@
                 <thead>
                 <tr>
                     <th class="col-md-5">
-                        {{ 'id'|trans }}
+                        {{ 'role_id'|trans }}
                     </th>
                     <th class="col-md-5">
-                        {{ 'name'|trans }}
+                        {{ 'role_name'|trans }}
                     </th>
                     <th class="col-md-2 text-center">
-                        {{ 'add_date'|trans }}
+                        {{ 'role_add_date'|trans }}
                     </th>
                 </tr>
                 </thead>
@@ -50,14 +50,6 @@
 
         <div class="navigation">
             {{ knp_pagination_render(roles) }}
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{ path('admin_user_add') }}" class="btn btn-primary btn-sm">
-                    {{ 'add_new_user_button_label'|trans }}
-                </a>
-            </div>
         </div>
     </div>
 {% endblock %}

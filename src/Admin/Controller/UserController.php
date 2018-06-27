@@ -81,7 +81,7 @@ class UserController extends AbstractController
                     return $this->redirectToRoute('admin_user_list');
                 }
             } else {
-                throw InvalidUserException::forId($userId);
+                throw InvalidUserException::forId(Uuid::fromString($userId));
 //                $this->addFlash('error', $translator->trans('user_not_exists_error'));
 
                 return $this->redirectToRoute('admin_user_list');
@@ -91,19 +91,21 @@ class UserController extends AbstractController
         // create form
         $form = $this->createForm(UserType::class, $updateUserCommand);
         if ($request->isMethod('POST')) {
-            try {
-                $form->handleRequest($request);
+            $form->handleRequest($request);
 
-                // update bundle data
-                $commandBus->handle($updateUserCommand);
+            if ($form->isValid()) {
+                try {
+                    // update bundle data
+                    $commandBus->handle($updateUserCommand);
 
-                // check if we have user create or update
-                $this->addFlash('notice', $translator->trans('user_update_success'));
-            } catch (\Exception $e) {
-                $this->addFlash('error', $translator->trans('user_update_error').' '.$e->getMessage());
+                    // check if we have user create or update
+                    $this->addFlash('notice', $translator->trans('user_update_success'));
+                } catch (\Exception $e) {
+                    $this->addFlash('error', $translator->trans('user_update_error').' '.$e->getMessage());
+                }
+
+                return $this->redirectToRoute('admin_user_list');
             }
-
-            return $this->redirectToRoute('admin_user_list');
         }
 
         return $this->render(

@@ -21,7 +21,7 @@ class InvalidUserException extends \DomainException
     {
         return new self(
             sprintf(
-                'Niepoprawny użytkownik o identyfikatorze: %s',
+                'Invalid user: %s',
                 $id
             ) . ($errors ? "\n" . implode("\n", $errors) : '')
         );

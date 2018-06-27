@@ -65,6 +65,9 @@ a:hover {
   #main-content dd {
     line-height: 30px; }
 
+form .help-block {
+  color: red; }
+
 /* footer */
 #main-footer {
   bottom: 0;

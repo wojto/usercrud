@@ -17,7 +17,7 @@ class RoleRepository extends EntityRepository implements RoleRepositoryInterface
     /**
      * Number of results on listing page
      */
-    const NUMBER_OF_RESULTS_PER_PAGE = 1;
+    const NUMBER_OF_RESULTS_PER_PAGE = 20;
 
     /**
      * Return role from database

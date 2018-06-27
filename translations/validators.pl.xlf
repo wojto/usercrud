@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="pl" target-language="pl" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="qH0rKkW" resname="error_user_password_invalid_message">
+        <source>error_user_password_invalid_message</source>
+        <target>Hasła muszą być identyczne</target>
+      </trans-unit>
+      <trans-unit id="rUqJQEp" resname="invalid_twitter_username">
+        <source>invalid_twitter_username</source>
+        <target>Nazwa użytkownika powinna się zaczynać od znaku @ i zawierać do 15 znaków (litery, cyfry i podkreślnik)</target>
+      </trans-unit>
+      <trans-unit id="h4zkZso" resname="invalid_password_regex">
+        <source>invalid_password_regex</source>
+        <target>Hasło powinno zawierać conajmniej 8 znaków (conajmneij jedną wielką literę, conajmniej jedną cyfrę i polskie znaki)</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

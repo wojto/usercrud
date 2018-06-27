@@ -7,6 +7,9 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 /**
  * Login form
@@ -29,7 +32,8 @@ class LoginType extends AbstractType
                 EmailType::class,
                 [
                     'required' => true,
-                    'label' => 'login_form_email_label'
+                    'label' => 'login_form_email_label',
+                    'constraints' => [new NotBlank(), new Length(array('min' => 2))]
                 ]
             )
             ->add(
@@ -37,7 +41,15 @@ class LoginType extends AbstractType
                 PasswordType::class,
                 [
                     'required' => true,
-                    'label' => 'login_form_password_label'
+                    'label' => 'login_form_password_label',
+                    'constraints' => [
+                        new Regex(
+                            [
+                                'pattern' => "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[ĄąĆćĘęŁłŃńÓóŚśŹźŻż])[A-Za-z\dĄąĆćĘęŁłŃńÓóŚśŹźŻż]{8,}$/",
+                                'message' => 'invalid_password_regex'
+                            ]
+                        )
+                    ]
                 ]
             );
     }

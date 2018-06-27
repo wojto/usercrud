@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="pl" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="LRlEavG" resname="logout_button_label">
+        <source>logout_button_label</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="mFEqd5G" resname="Copyright &amp;copy; 2000 - %year% Wojciech Andruszkiewicz">
+        <source>Copyright &amp;copy; 2000 - %year% Wojciech Andruszkiewicz</source>
+        <target><![CDATA[__Copyright &copy; 2000 - %year% Wojciech Andruszkiewicz]]></target>
+      </trans-unit>
+      <trans-unit id="9A1Bs6R" resname="Strona główna">
+        <source>Strona główna</source>
+        <target>__Strona główna</target>
+      </trans-unit>
+      <trans-unit id="JcMUCUM" resname="Witaj w panelu administracyjnym">
+        <source>Witaj w panelu administracyjnym</source>
+        <target>__Witaj w panelu administracyjnym</target>
+      </trans-unit>
+      <trans-unit id="c545ZMW" resname="role_list">
+        <source>role_list</source>
+        <target>__role_list</target>
+      </trans-unit>
+      <trans-unit id="pWFFJwz" resname="id">
+        <source>id</source>
+        <target>__id</target>
+      </trans-unit>
+      <trans-unit id="gqNTf.D" resname="name">
+        <source>name</source>
+        <target>__name</target>
+      </trans-unit>
+      <trans-unit id="88yniIu" resname="add_date">
+        <source>add_date</source>
+        <target>__add_date</target>
+      </trans-unit>
+      <trans-unit id="2lUnL3v" resname="role_not_found">
+        <source>role_not_found</source>
+        <target>__role_not_found</target>
+      </trans-unit>
+      <trans-unit id="k2mKK_U" resname="number_of_roles">
+        <source>number_of_roles</source>
+        <target>__number_of_roles</target>
+      </trans-unit>
+      <trans-unit id="eVOehIL" resname="add_new_user_button_label">
+        <source>add_new_user_button_label</source>
+        <target>__add_new_user_button_label</target>
+      </trans-unit>
+      <trans-unit id="wyRoqMS" resname="Logowanie">
+        <source>Logowanie</source>
+        <target>__Logowanie</target>
+      </trans-unit>
+      <trans-unit id="YbeW6R1" resname="Adres e-mail">
+        <source>Adres e-mail</source>
+        <target>__Adres e-mail</target>
+      </trans-unit>
+      <trans-unit id="3b.Bk57" resname="Hasło">
+        <source>Hasło</source>
+        <target>__Hasło</target>
+      </trans-unit>
+      <trans-unit id="Q13MGpK" resname="Zaloguj">
+        <source>Zaloguj</source>
+        <target>__Zaloguj</target>
+      </trans-unit>
+      <trans-unit id="0C8SSS1" resname="Wróć do serwisu">
+        <source>Wróć do serwisu</source>
+        <target>__Wróć do serwisu</target>
+      </trans-unit>
+      <trans-unit id="YkFIMqw" resname="user_list">
+        <source>user_list</source>
+        <target>__user_list</target>
+      </trans-unit>
+      <trans-unit id="SxaNiNy" resname="role">
+        <source>role</source>
+        <target>__role</target>
+      </trans-unit>
+      <trans-unit id="Kw3N1AA" resname="actions">
+        <source>actions</source>
+        <target>__actions</target>
+      </trans-unit>
+      <trans-unit id="WWKTCyl" resname="update_user_small_button_label">
+        <source>update_user_small_button_label</source>
+        <target>__update_user_small_button_label</target>
+      </trans-unit>
+      <trans-unit id="zjrHStF" resname="delete_user_small_button_label">
+        <source>delete_user_small_button_label</source>
+        <target>__delete_user_small_button_label</target>
+      </trans-unit>
+      <trans-unit id="JnvPsi1" resname="view_user_small_button_label">
+        <source>view_user_small_button_label</source>
+        <target>__view_user_small_button_label</target>
+      </trans-unit>
+      <trans-unit id="7a_ZYPC" resname="no_users_found">
+        <source>no_users_found</source>
+        <target>__no_users_found</target>
+      </trans-unit>
+      <trans-unit id="ca4Prc2" resname="number_of_users">
+        <source>number_of_users</source>
+        <target>__number_of_users</target>
+      </trans-unit>
+      <trans-unit id="NTpClsJ" resname="update_user_header">
+        <source>update_user_header</source>
+        <target>__update_user_header</target>
+      </trans-unit>
+      <trans-unit id="BukkRvz" resname="add_new_user_header">
+        <source>add_new_user_header</source>
+        <target>__add_new_user_header</target>
+      </trans-unit>
+      <trans-unit id="uwlkhIs" resname="form_save_button_label">
+        <source>form_save_button_label</source>
+        <target>__form_save_button_label</target>
+      </trans-unit>
+      <trans-unit id="pI7491S" resname="back_to_list_button_label">
+        <source>back_to_list_button_label</source>
+        <target>__back_to_list_button_label</target>
+      </trans-unit>
+      <trans-unit id="oKsSTCX" resname="view_user_header">
+        <source>view_user_header</source>
+        <target>__view_user_header</target>
+      </trans-unit>
+      <trans-unit id="_J1raWB" resname="user_id">
+        <source>user_id</source>
+        <target>__user_id</target>
+      </trans-unit>
+      <trans-unit id="Lg0OANS" resname="user_name">
+        <source>user_name</source>
+        <target>__user_name</target>
+      </trans-unit>
+      <trans-unit id="Exlt7_2" resname="user_email">
+        <source>user_email</source>
+        <target>__user_email</target>
+      </trans-unit>
+      <trans-unit id="bXp5vzZ" resname="user_role">
+        <source>user_role</source>
+        <target>__user_role</target>
+      </trans-unit>
+      <trans-unit id="uyN2JtK" resname="user_created">
+        <source>user_created</source>
+        <target>__user_created</target>
+      </trans-unit>
+      <trans-unit id="JlJa_4u" resname="role_id">
+        <source>role_id</source>
+        <target>__role_id</target>
+      </trans-unit>
+      <trans-unit id="L7PrFUZ" resname="role_name">
+        <source>role_name</source>
+        <target>__role_name</target>
+      </trans-unit>
+      <trans-unit id="zrG4WNR" resname="role_add_date">
+        <source>role_add_date</source>
+        <target>__role_add_date</target>
+      </trans-unit>
+      <trans-unit id="OjQ4wOZ" resname="user_add_date">
+        <source>user_add_date</source>
+        <target>__user_add_date</target>
+      </trans-unit>
+      <trans-unit id="FHNqLrn" resname="Role">
+        <source>Role</source>
+        <target>Role</target>
+      </trans-unit>
+      <trans-unit id="nw6X1WG" resname="Użytkownicy">
+        <source>Użytkownicy</source>
+        <target>Użytkownicy</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -7,7 +7,6 @@ use Crud\Domain\Model\Role;
 use Crud\Domain\Repository\RoleRepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,6 +14,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 /**
  * User form
@@ -56,14 +59,19 @@ class UserType extends AbstractType
             ->add(
                 'name',
                 TextType::class,
-                ['required' => true, 'label' => 'user_form_name_label']
+                [
+                    'required' => true,
+                    'label' => 'user_form_name_label',
+                    'constraints' => [new NotBlank(), new Length(array('min' => 2))]
+                ]
             )
             ->add(
                 'email',
                 EmailType::class,
                 [
                     'required' => true,
-                    'label' => 'user_form_email_label'
+                    'label' => 'user_form_email_label',
+                    'constraints' => [new NotBlank(), new Email()]
                 ]
             )
             ->add(
@@ -71,7 +79,15 @@ class UserType extends AbstractType
                 TextType::class,
                 [
                     'required' => false,
-                    'label' => 'user_form_twitter_handle_label'
+                    'label' => 'user_form_twitter_handle_label',
+                    'constraints' => [
+                        new Regex(
+                            [
+                                'pattern' => '/(^|[^@\w])@(\w{1,15})\b/',
+                                'message' => 'invalid_twitter_username'
+                            ]
+                        )
+                    ]
                 ]
             )
             ->add(
@@ -95,6 +111,14 @@ class UserType extends AbstractType
                 'second_options' => array(
                     'label' => 'user_form_repeated_password_label'
                 ),
+                'constraints' => [
+                    new Regex(
+                        [
+                            'pattern' => "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[ĄąĆćĘęŁłŃńÓóŚśŹźŻż])[A-Za-z\dĄąĆćĘęŁłŃńÓóŚśŹźŻż]{8,}$/",
+                            'message' => 'invalid_password_regex'
+                        ]
+                    )
+                ]
             ))
         ;
     }

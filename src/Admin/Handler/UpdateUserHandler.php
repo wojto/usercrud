@@ -66,6 +66,7 @@ class UpdateUserHandler
                 ->setName($command->name)
                 ->setRole($role)
                 ->setEmail(new Email($command->email))
+                ->setTwitterHandle($command->twitterHandle)
                 ->setModified(new \DateTime());
 
             if (!empty($command->password)) {

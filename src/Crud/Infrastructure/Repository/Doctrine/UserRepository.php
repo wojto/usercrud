@@ -17,7 +17,8 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
     /**
      * Number of results on listing page
      */
-    const NUMBER_OF_RESULTS_PER_PAGE = 1;
+    // @TODO temporary only for showing paginator
+    const NUMBER_OF_RESULTS_PER_PAGE = 2;
 
     /**
      * @param UuidInterface $id

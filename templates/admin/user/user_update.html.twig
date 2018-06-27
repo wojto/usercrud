@@ -8,7 +8,7 @@
             </h3>
         </div>
         <div class="row">
-            <form class="form-horizontal" action="{{ userId ? path('admin_user_update', {'userId': userId})
+            <form novalidate class="form-horizontal" action="{{ userId ? path('admin_user_update', {'userId': userId})
                 : path('admin_user_add') }}" method="post">
                 <div class="form-group">
                     <div class="col-sm-12">

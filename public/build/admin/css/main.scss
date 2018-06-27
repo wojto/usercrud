@@ -107,6 +107,12 @@ a:hover {
   }
 }
 
+form {
+  .help-block {
+    color: $color-error;
+  }
+}
+
 /* footer */
 #main-footer {
   bottom: 0;
