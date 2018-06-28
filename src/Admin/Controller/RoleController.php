@@ -32,7 +32,7 @@ class RoleController extends AbstractController
 
         // render template
         return $this->render(
-            'Admin/role/role_list.html.twig',
+            'admin/role/role_list.html.twig',
             array(
                 'roles' => $pagination
             )
