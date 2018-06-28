@@ -8,6 +8,7 @@ use Crud\Domain\Model\ValueObject\Email;
 use Crud\Domain\Repository\RoleRepositoryInterface;
 use Crud\Domain\Repository\UserRepositoryInterface;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class UpdateUserHandler
@@ -22,17 +23,24 @@ class UpdateUserHandler
     private $roleRespository;
 
     /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
+    /**
      * UpdateUserHandler constructor.
      * @param UserRepositoryInterface $userRespository
      * @param RoleRepositoryInterface $roleRespository
      */
     public function __construct(
         UserRepositoryInterface $userRespository,
-        RoleRepositoryInterface $roleRespository
+        RoleRepositoryInterface $roleRespository,
+        UserPasswordEncoderInterface $encoder
     )
     {
         $this->userRespository = $userRespository;
         $this->roleRespository = $roleRespository;
+        $this->encoder = $encoder;
     }
 
     /**
@@ -57,8 +65,10 @@ class UpdateUserHandler
                 $role,
                 $command->name,
                 new Email($command->email),
-                $command->twitterHandle,
-                $command->password
+                $command->twitterHandle
+            );
+            $user->setPassword(
+                $this->encoder->encodePassword($user, $command->password)
             );
         } else {
             // update existing user
@@ -70,7 +80,7 @@ class UpdateUserHandler
                 ->setModified(new \DateTime());
 
             if (!empty($command->password)) {
-                $user->setPassword($command->password);
+                $user->setPassword($this->encoder->encodePassword($user, $command->password));
             }
         }
 

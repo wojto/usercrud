@@ -5,22 +5,19 @@ namespace Crud\Domain\Model;
 use Crud\Domain\Model\ValueObject\Email;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface as UserSecurityInterface;
 
 /**
  * User class
  */
-class User implements UserInterface, UserSecurityInterface, \Serializable
+class User implements UserInterface, UserSecurityInterface, \Serializable, EquatableInterface, EncoderAwareInterface
 {
     /**
      * @var UuidInterface
      */
     private $id;
-
-    /**
-     * @var UuidInterface|null
-     */
-//    private $roleId;
 
     /**
      * @var string
@@ -63,14 +60,12 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
      * @param string $name
      * @param Email $email
      * @param string $twitterHandle
-     * @param string $password
      */
     public function __construct(
         Role $role,
         string $name,
         Email $email,
-        $twitterHandle,
-        $password
+        $twitterHandle
     )
     {
         $this->id = Uuid::uuid4();
@@ -78,7 +73,6 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
         $this->name = $name;
         $this->email = $email;
         $this->twitterHandle = $twitterHandle;
-        $this->password = $password;
 
         $this->created = new \DateTime();
     }
@@ -160,7 +154,7 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
      * @param string $twitterHandle
      * @return UserInterface
      */
-    public function setTwitterHandle(string $twitterHandle): UserInterface
+    public function setTwitterHandle(?string $twitterHandle): UserInterface
     {
         $this->twitterHandle = $twitterHandle;
 
@@ -292,5 +286,26 @@ class User implements UserInterface, UserSecurityInterface, \Serializable
     public function unserialize($serialized)
     {
         list ($this->id, $this->email, $this->password) = unserialize($serialized);
+    }
+
+    /**
+     * @param UserSecurityInterface $user
+     * @return bool
+     */
+    public function isEqualTo(UserSecurityInterface $user)
+    {
+        if ($this->password !== $user->getPassword()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getEncoderName()
+    {
+        return 'sha1';
     }
 }

@@ -4,6 +4,7 @@ services:
         arguments:
             - '@Crud\Infrastructure\Repository\Doctrine\UserRepository'
             - '@Crud\Infrastructure\Repository\Doctrine\RoleRepository'
+            - '@security.password_encoder'
         tags:
             - { name: tactician.handler, command: 'Admin\Command\UpdateUserCommand' }
 

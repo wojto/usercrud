@@ -1,7 +1,7 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
-        Crud\Domain\Model\User:
+        sha1:
             algorithm:        sha1
             encode_as_base64: false
             iterations:       1
