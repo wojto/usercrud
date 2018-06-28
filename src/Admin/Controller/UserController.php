@@ -41,7 +41,7 @@ class UserController extends AbstractController
         if ($request->isXmlHttpRequest()) {
             // render template
             return $this->render(
-                'Admin/user/listing.html.twig',
+                'admin/user/listing.html.twig',
                 array(
                     'users' => $pagination
                 )
@@ -50,7 +50,7 @@ class UserController extends AbstractController
 
         // render template
         return $this->render(
-            'Admin/user/user_list.html.twig',
+            'admin/user/user_list.html.twig',
             array(
                 'users' => $pagination
             )
