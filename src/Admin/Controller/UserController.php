@@ -38,6 +38,16 @@ class UserController extends AbstractController
             UserRepository::NUMBER_OF_RESULTS_PER_PAGE
         );
 
+        if ($request->isXmlHttpRequest()) {
+            // render template
+            return $this->render(
+                'Admin/user/listing.html.twig',
+                array(
+                    'users' => $pagination
+                )
+            );
+        }
+
         // render template
         return $this->render(
             'Admin/user/user_list.html.twig',
